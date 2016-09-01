@@ -2,14 +2,13 @@ package com.example.pmisi.desktopsms;
 
 import android.app.Activity;
 import android.os.AsyncTask;
-import android.support.v7.app.AppCompatActivity;
+
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.android.gms.gcm.GoogleCloudMessaging;
@@ -22,19 +21,21 @@ public class MainActivity extends Activity {
     private TCPClient mTcpClient;
     private static final int PLAY_SERVICES_RESOLUTION_REQUEST = 9000;
 
-    EditText portText;
-    EditText ipText;
-    Button connect_button;
-    Button send_button;
-    String gcmRegID = "";
+    private EditText portText;
+    private EditText ipText;
+    private Button connect_button;
+    private Button send_button;
+    private String gcmRegID = "";
+
     @Override
     public void onCreate(Bundle savedInstanceState)
     {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         if(checkPlayServices()) {
             new GCMRegistrationTask().execute();
-        }else {
+        } else {
             Toast.makeText(getApplicationContext(),"No google services :(",Toast.LENGTH_LONG).show();
             connect_button.setEnabled(false);
         }
